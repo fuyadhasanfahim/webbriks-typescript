@@ -21,8 +21,10 @@ import {
     SheetContent,
     SheetFooter,
     SheetHeader,
+    SheetTitle,
     SheetTrigger,
 } from '@/components/ui/sheet';
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { Menu } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { companyLogo } from '@/assets';
@@ -60,11 +62,10 @@ const services = [
 
 export default function Navbar() {
     const { theme } = useTheme();
-    console.log(theme);
 
     return (
-        <nav className="bg-background backdrop-blur z-50 shadow-sm">
-            <div className="container py-4">
+        <nav className="bg-transparent backdrop-blur z-50">
+            <div className="container !py-6">
                 <div className="flex items-center justify-between space-x-8">
                     <Link href="/" className="flex items-center space-x-2">
                         <Image
@@ -83,7 +84,9 @@ export default function Navbar() {
                         <NavigationMenuList>
                             <NavigationMenuItem>
                                 <NavigationMenuTrigger>
-                                    <Link href="/services">Services</Link>
+                                    <Link href="/services" className="text-lg">
+                                        Services
+                                    </Link>
                                 </NavigationMenuTrigger>
                                 <NavigationMenuContent>
                                     <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
@@ -105,7 +108,9 @@ export default function Navbar() {
                                     <NavigationMenuLink
                                         className={navigationMenuTriggerStyle()}
                                     >
-                                        About Us
+                                        <span className="text-lg">
+                                            About Us
+                                        </span>
                                     </NavigationMenuLink>
                                 </Link>
                             </NavigationMenuItem>
@@ -114,7 +119,7 @@ export default function Navbar() {
                                     <NavigationMenuLink
                                         className={navigationMenuTriggerStyle()}
                                     >
-                                        Pricing
+                                        <span className="text-lg">Pricing</span>
                                     </NavigationMenuLink>
                                 </Link>
                             </NavigationMenuItem>
@@ -123,7 +128,7 @@ export default function Navbar() {
                                     <NavigationMenuLink
                                         className={navigationMenuTriggerStyle()}
                                     >
-                                        Blogs
+                                        <span className="text-lg">Blogs</span>
                                     </NavigationMenuLink>
                                 </Link>
                             </NavigationMenuItem>
@@ -136,7 +141,9 @@ export default function Navbar() {
                                     <NavigationMenuLink
                                         className={navigationMenuTriggerStyle()}
                                     >
-                                        Contact Us
+                                        <span className="text-lg">
+                                            Contact Us
+                                        </span>
                                     </NavigationMenuLink>
                                 </Link>
                             </NavigationMenuItem>
@@ -156,72 +163,84 @@ export default function Navbar() {
                                     side={'left'}
                                     className="font-montserrat font-medium"
                                 >
-                                    <SheetHeader>
-                                        <Link href={'/'}>
-                                            <Image
-                                                src={
-                                                    theme === 'light'
-                                                        ? companyLogo.light
-                                                        : companyLogo.dark
-                                                }
-                                                alt={companyLogo.alt}
-                                                width={171}
-                                                height={30}
-                                            />
-                                        </Link>
-                                    </SheetHeader>
-                                    <div className="grid gap-4 py-4">
-                                        <div className="flex flex-col space-y-2">
-                                            <h3 className="text-sm font-medium">
-                                                Services
-                                            </h3>
-                                            <ul className="space-y-2">
-                                                {services.map((service) => (
-                                                    <li
-                                                        key={service.title}
-                                                        className="pl-2"
-                                                    >
-                                                        <Link
-                                                            href={service.href}
-                                                            className="text-sm text-muted-foreground hover:text-primary"
+                                    <div className="space-y-6">
+                                        <SheetHeader>
+                                            <SheetTitle>
+                                                <VisuallyHidden>
+                                                    Mobile Navigation Menu
+                                                </VisuallyHidden>
+                                            </SheetTitle>
+                                            <Link href={'/'}>
+                                                <Image
+                                                    src={
+                                                        theme === 'light'
+                                                            ? companyLogo.light
+                                                            : companyLogo.dark
+                                                    }
+                                                    alt={companyLogo.alt}
+                                                    width={171}
+                                                    height={30}
+                                                />
+                                            </Link>
+                                        </SheetHeader>
+                                        <div className="grid gap-4 py-4">
+                                            <div className="flex flex-col space-y-2">
+                                                <Link
+                                                    href={'/services'}
+                                                    className="text-lg font-medium"
+                                                >
+                                                    Services
+                                                </Link>
+                                                <ul className="space-y-2">
+                                                    {services.map((service) => (
+                                                        <li
+                                                            key={service.title}
+                                                            className="pl-2"
                                                         >
-                                                            {service.title}
-                                                        </Link>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
+                                                            <Link
+                                                                href={
+                                                                    service.href
+                                                                }
+                                                                className="text-sm text-muted-foreground hover:text-primary"
+                                                            >
+                                                                {service.title}
+                                                            </Link>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
 
-                                        <div className="flex flex-col space-y-2">
-                                            <Link
-                                                href="/about-us"
-                                                className="text-sm font-medium hover:text-primary"
-                                            >
-                                                About Us
-                                            </Link>
-                                            <Link
-                                                href="/contact-us"
-                                                className="text-sm font-medium hover:text-primary"
-                                            >
-                                                Contact Us
-                                            </Link>
-                                            <Link
-                                                href="/pricing"
-                                                className="text-sm font-medium hover:text-primary"
-                                            >
-                                                Pricing
-                                            </Link>
-                                            <Link
-                                                href="/blogs"
-                                                className="text-sm font-medium hover:text-primary"
-                                            >
-                                                Blogs
-                                            </Link>
+                                            <div className="flex flex-col space-y-2">
+                                                <Link
+                                                    href="/about-us"
+                                                    className="text-lg font-medium hover:text-primary"
+                                                >
+                                                    About Us
+                                                </Link>
+                                                <Link
+                                                    href="/contact-us"
+                                                    className="text-lg font-medium hover:text-primary"
+                                                >
+                                                    Contact Us
+                                                </Link>
+                                                <Link
+                                                    href="/pricing"
+                                                    className="text-lg font-medium hover:text-primary"
+                                                >
+                                                    Pricing
+                                                </Link>
+                                                <Link
+                                                    href="/blogs"
+                                                    className="text-lg font-medium hover:text-primary"
+                                                >
+                                                    Blogs
+                                                </Link>
+                                            </div>
                                         </div>
+                                        <SheetFooter>
+                                            <SheetClose asChild></SheetClose>
+                                        </SheetFooter>
                                     </div>
-                                    <SheetFooter>
-                                        <SheetClose asChild></SheetClose>
-                                    </SheetFooter>
                                 </SheetContent>
                             </Sheet>
                         </div>
@@ -247,7 +266,7 @@ const ListItem = React.forwardRef<
                     )}
                     {...props}
                 >
-                    <div className="text-sm font-medium leading-none">
+                    <div className="text-lg font-medium leading-none">
                         {title}
                     </div>
                     <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
