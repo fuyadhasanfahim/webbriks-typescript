@@ -2,29 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    @apply font-inter scroll-smooth;
-}
-
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-    background: black;
-    border-radius: 9999px;
-}
-
-html {
-    scrollbar-width: thin;
-    scrollbar-color: black transparent;
-    scroll-behavior: smooth;
-}
-
 @layer base {
     :root {
         --background: 0 0% 100%;
@@ -88,6 +65,15 @@ html {
     body {
         @apply bg-background text-foreground;
     }
+}
+
+html {
+    scrollbar-width: thin;
+    scroll-behavior: smooth;
+}
+
+body {
+    @apply font-inter scroll-smooth;
 }
 
 .container {
