@@ -1,12 +1,10 @@
 import { ReactNode } from 'react';
-import Navbar from '@/components/shared/Navbar';
+import NavbarWrapper from '@/components/shared/NavbarWrapper';
 
 export default function Layout({ children }: { children: ReactNode }) {
     return (
         <section>
-            <header>
-                <Navbar />
-            </header>
+            <NavbarWrapper />
             <main className="font-inter">{children}</main>
         </section>
     );

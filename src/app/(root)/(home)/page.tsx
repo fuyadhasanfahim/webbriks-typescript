@@ -7,8 +7,8 @@ export const metadata: Metadata = {
 
 export default async function page() {
     return (
-        <section className="container">
-            <h1>
+        <section className="padding-x padding-y">
+            <div className="container">
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum
                 quis, ipsa quod cumque necessitatibus aperiam optio eum, dolorem
                 quam natus provident soluta, ad culpa enim suscipit dolorum
@@ -132,7 +132,7 @@ export default async function page() {
                 nihil harum quisquam. Reprehenderit numquam dolore officia
                 asperiores mollitia, ex eligendi. Iusto rem aspernatur mollitia
                 libero quia veritatis non pariatur!
-            </h1>
+            </div>
         </section>
     );
 }

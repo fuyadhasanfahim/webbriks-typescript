@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ModeToggle } from './ModeToggle';
 import { cn } from '@/lib/utils';
@@ -62,21 +62,35 @@ const services = [
 
 export default function Navbar() {
     const { theme } = useTheme();
+    const [resolvedTheme, setResolvedTheme] = useState(theme);
+
+    useEffect(() => {
+        if (theme === 'system') {
+            const systemTheme = window.matchMedia(
+                '(prefers-color-scheme: dark)'
+            ).matches
+                ? 'dark'
+                : 'light';
+            setResolvedTheme(systemTheme);
+        } else {
+            setResolvedTheme(theme);
+        }
+    }, [theme]);
+
+    const logoSrc =
+        resolvedTheme === 'dark' ? companyLogo.dark : companyLogo.light;
 
     return (
-        <nav className="bg-transparent backdrop-blur z-50">
-            <div className="container !py-6">
+        <nav className="bg-transparent backdrop-blur z-50 padding-x">
+            <div className="container py-6">
                 <div className="flex items-center justify-between space-x-8">
                     <Link href="/" className="flex items-center space-x-2">
                         <Image
-                            src={
-                                theme === 'light'
-                                    ? companyLogo.light
-                                    : companyLogo.dark
-                            }
+                            src={logoSrc}
                             alt={companyLogo.alt}
                             width={171}
                             height={30}
+                            priority
                         />
                     </Link>
 
@@ -172,11 +186,7 @@ export default function Navbar() {
                                             </SheetTitle>
                                             <Link href={'/'}>
                                                 <Image
-                                                    src={
-                                                        theme === 'light'
-                                                            ? companyLogo.light
-                                                            : companyLogo.dark
-                                                    }
+                                                    src={logoSrc}
                                                     alt={companyLogo.alt}
                                                     width={171}
                                                     height={30}

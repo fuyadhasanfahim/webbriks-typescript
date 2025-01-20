@@ -91,5 +91,13 @@ html {
 }
 
 .container {
-    @apply w-full max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-20 lg:py-32 xl:py-44;
+    @apply w-full max-w-7xl mx-auto;
+}
+
+.padding-x {
+    @apply px-4 md:px-8;
+}
+
+.padding-y {
+    @apply py-10 md:py-20 lg:py-32;
 }
